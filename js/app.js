@@ -8,14 +8,19 @@ const searchTemperature = () => {
     .then((data) => displayTemperature(data));
 };
 
-const setInnerText = (id,text) => {
-	document.getElementById(id).innerText = text;
-}
+const setInnerText = (id, text) => {
+  document.getElementById(id).innerText = text;
+};
 
 const displayTemperature = (temperature) => {
-	setInnerText('city',temperature.name);
-	setInnerText('city-temp-deg',temperature.main.temp);
-  
-	console.log(temperature);
+  setInnerText("city", temperature.name);
+  setInnerText("city-temp-deg", temperature.main.temp);
+  setInnerText("temp-condition", temperature.weather[0].description);
 
+  // set weather icon
+  const url = `http://openweathermap.org/img/wn/${temperature.weather[0].icon}@2x.png`;
+  const imgIcon = document.getElementById("weather-icon");
+  console.log(url);
+  //   imgIcon.src = url;
+  imgIcon.setAttribute("src", url);
 };
